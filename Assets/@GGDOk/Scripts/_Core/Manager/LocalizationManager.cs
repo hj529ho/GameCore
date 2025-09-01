@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 namespace Core.Manager
 {
     // [Manager("Localization","Core")]
-    public class LocalizationManager
+    public class LocalizationManager : BaseManager
     {
         private readonly string _defaultLanguage = "ko-KR";
         IEnumerator LoadSetting()
@@ -41,7 +41,12 @@ namespace Core.Manager
         }
 
 
-        public async UniTask Init()
+        public override void Init()
+        {
+            
+        }
+
+        public override async UniTask InitAsync()
         {
             UnityEngine.ResourceManagement.ResourceManager.ExceptionHandler += OnException;
             await LoadSettingAsync();
@@ -61,7 +66,7 @@ namespace Core.Manager
                 LoadLocale(_defaultLanguage);
             }
         }
-
+        
         public void Init(Action<bool> callback)
         {
             UnityEngine.ResourceManagement.ResourceManager.ExceptionHandler += OnException;

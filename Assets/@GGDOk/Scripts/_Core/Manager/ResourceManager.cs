@@ -8,10 +8,20 @@ using Object = UnityEngine.Object;
 namespace Core.Manager
 {
     // [Manager("Resource","Core")]
-    public class ResourceManager
+    public class ResourceManager : BaseManager
     {
         private readonly Dictionary<string, Object> _global = new();
         private readonly Dictionary<string, Object> _stage = new();
+        
+        
+        public override void Init()
+        {
+        }
+
+        public override async UniTask InitAsync()
+        {
+            await UniTask.CompletedTask;
+        }
         
         private void LoadAsync<T>(string key,Define.LoadType loadType=Define.LoadType.Stage,Action<T> callback = null) where T : Object
         {
@@ -237,5 +247,7 @@ namespace Core.Manager
 
         public void RegisterPreloadAssets<T>(string label) where T : UnityEngine.Object
             => Managers.Instance.RegisterPreloadAssets<T>(label);
+
+
     }
 }

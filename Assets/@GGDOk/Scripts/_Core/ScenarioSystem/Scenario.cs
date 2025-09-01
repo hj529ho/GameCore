@@ -41,7 +41,6 @@ namespace Core.ScenarioSystem
             foreach (XmlElement node in nodes.ChildNodes)
             {
                 //빈 커맨드 생성
-                Command command = new Command();
                 //아래 foreach 문에서 생성된 모든 커맨드는 한꺼번에 실행됨.
                 foreach (XmlElement element in node.ChildNodes)
                 {
@@ -56,7 +55,7 @@ namespace Core.ScenarioSystem
                         //TODO *커맨드 추가될 때 여기에 추가
                     }
                 }
-                commands.Add(command);
+                // commands.Add(command);
             }
         }
     }

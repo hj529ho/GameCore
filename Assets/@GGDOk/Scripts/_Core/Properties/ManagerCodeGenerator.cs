@@ -48,6 +48,7 @@ public class ManagerCodeGenerator
         var sb = new StringBuilder();
         sb.AppendLine("// 자동 생성된 코드 - 수동으로 수정하지 마세요");
         sb.AppendLine("using System;");
+        sb.AppendLine("using Cysharp.Threading.Tasks;");
         sb.AppendLine("namespace Core.Manager");
         sb.AppendLine("{");
         
@@ -83,6 +84,29 @@ public class ManagerCodeGenerator
             sb.AppendLine("        #endregion");
             sb.AppendLine();
         }
+
+        sb.AppendLine("        private static async UniTask InitAsyncContents()");
+        sb.AppendLine("        {");
+        foreach (var group in groupedManagers)
+        {
+            foreach (var manager in group)
+            {
+                string propertyName = manager.Name;
+                sb.AppendLine($"            await {propertyName}.InitAsync();");
+            }
+        }
+        sb.AppendLine("        }");
+        sb.AppendLine("        private static void InitContents()");
+        sb.AppendLine("        {");
+        foreach (var group in groupedManagers)
+        {
+            foreach (var manager in group)
+            {
+                string propertyName = manager.Name;
+                sb.AppendLine($"            {propertyName}.Init();");
+            }
+        }
+        sb.AppendLine("        }");
 
         sb.AppendLine("    }");
         sb.AppendLine("}");

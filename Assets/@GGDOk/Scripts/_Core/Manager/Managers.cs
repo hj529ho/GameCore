@@ -104,15 +104,12 @@ namespace Core.Manager
                 DontDestroyOnLoad(go);
                 _instance = go.GetComponent<Managers>();
             }
-            UIManager.Init();
-            Sound.Init();
-            Scene.Init();
-            Story.Init();
-            UI.ClosePopupUI();
-            Input.Init();
+            InitCore();
+            InitAsync().Forget();
         }
-        public static async UniTask InitAsync()
+        private static async UniTask InitAsync()
         {
+            await InitAsyncCore();
         }
     }
 }

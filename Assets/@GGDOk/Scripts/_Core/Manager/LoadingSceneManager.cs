@@ -7,16 +7,21 @@ using UnityEngine.SceneManagement;
 namespace Core.Manager
 {
     // [Manager("Scene", "Core")]
-    public class LoadingSceneManager
+    public class LoadingSceneManager : BaseManager
     {
         [System.NonSerialized] public string PreviousScene = "";
         [System.NonSerialized] public string CurrentScene = "";
         private float _time;
         public bool IsRunningLoading = false;
-        public void Init()
+        public override void Init()
         {
             CurrentScene = SceneManager.GetActiveScene().name;
         }
+        public override async UniTask InitAsync()
+        {
+            await UniTask.CompletedTask;
+        }
+
         /// <summary>
         /// 
         /// </summary>

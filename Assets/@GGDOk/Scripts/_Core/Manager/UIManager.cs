@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using Core.UI;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Core.Manager
 {
     // [Manager("UI", "Core")]
-    public class UIManager
+    public class UIManager : BaseManager
     {
         private int _order = 10;
-        private readonly Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
-        private UI_Scene _sceneUI = null;
-        private UI_Loading _loadingUI = null;
+        private readonly Stack<UI_Popup> _popupStack = new();
+        private UI_Loading _loadingUI;
 
-        public static GameObject Root
+        private static GameObject Root
         {
             get
             {
@@ -23,7 +23,7 @@ namespace Core.Manager
             }
         }
 
-        public static GameObject GlobalUIRoot
+        private static GameObject GlobalUIRoot
         {
             get
             {
@@ -37,9 +37,13 @@ namespace Core.Manager
             }
         }
 
-        public static void Init()
+        public override void Init()
         {
             _ = Root;
+        }
+        public override async UniTask InitAsync()
+        {
+            await UniTask.CompletedTask;
         }
 
         public Canvas SetCanvas(GameObject go, bool sort = true, bool story = false)
@@ -109,8 +113,6 @@ namespace Core.Manager
                 name = typeof(T).Name;
             GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}.prefab");
             T sceneUI = Utils.Statics.GetOrAddComponent<T>(go);
-            _sceneUI = sceneUI;
-
             go.transform.SetParent(Root.transform);
             return sceneUI;
         }
@@ -181,5 +183,7 @@ namespace Core.Manager
         }
 
         #endregion
+
+   
     }
 }

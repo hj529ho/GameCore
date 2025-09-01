@@ -2,16 +2,9 @@ using Cysharp.Threading.Tasks;
 
 namespace Core.Manager
 {
-    public class BaseManager
+    public abstract class BaseManager
     {
-        public virtual void Init()
-        {
-            
-        }
-
-        public virtual async UniTask InitAsync()
-        {
-            await UniTask.Yield();
-        }
+        public abstract void Init();
+        public abstract UniTask InitAsync();
     }
 }

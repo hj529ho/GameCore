@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 namespace Core.ScenarioSystem
 {
-    public class Command
+    public abstract class Command
     {
-        public virtual IEnumerator Invoke()
-        {
-            yield return null;
-        }
+        public abstract UniTask Invoke();
 
         public virtual void Revoke()
         {
             return;
         }
+
         public static LinkedCommand operator +(Command a, Command b)
         {
             List<Command> commands = new List<Command>();
@@ -21,37 +20,39 @@ namespace Core.ScenarioSystem
             commands.Add(b);
             return new LinkedCommand(commands);
         }
-        public static LinkedCommand operator +(LinkedCommand a, Command b)
+    }
+
+    public class LayeredCommand : Command
+    {
+        public readonly List<Command> commands;
+        
+        public LayeredCommand(List<Command> commands)
         {
-            a.Commands.Add(b);
-            return new LinkedCommand(a.Commands);
+            this.commands = commands;
         }
-        public static LinkedCommand operator +(Command a, LinkedCommand b)
+        public override async UniTask Invoke()
         {
-            List<Command> commands = new List<Command>();
-            commands.Add(a);
-            commands.AddRange(b.Commands);
-            return new LinkedCommand(commands);
+            await UniTask.WhenAll(commands.Select(action => action.Invoke()));
         }
     }
 
     public class LinkedCommand :Command
     {
-        public List<Command> Commands;
+        public readonly List<Command> commands;
         public LinkedCommand(List<Command> commands)
         {
-            this.Commands = commands;
+            this.commands = commands;
         }
-        public override IEnumerator Invoke()
+        public override async UniTask Invoke()
         {
-            foreach (var command in Commands)
+            foreach (var command in commands)
             {
-                yield return command.Invoke();
+                await command.Invoke();
             }
         }
         public override void Revoke()
         {
-            foreach (var command in Commands)
+            foreach (var command in commands)
             {
                 command.Revoke();
             }

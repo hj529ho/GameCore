@@ -1,10 +1,11 @@
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Core.Manager
 {
     // [Manager("Sound","Core")]
-    public class SoundManager
+    public class SoundManager : BaseManager
     {
         //AudioSource
 
@@ -12,7 +13,7 @@ namespace Core.Manager
 
         //AudioListener\
         private readonly AudioSource[] _audioSource = new AudioSource[(int)Define.Sound.MaxCOUNT];
-        public void Init()
+        public override void Init()
         {
             GameObject root = GameObject.Find("@Sound");
             if(root == null)
@@ -29,7 +30,11 @@ namespace Core.Manager
                 _audioSource[(int)Define.Sound.BGM].loop = true;
                 Debug.Log("SoundManager Init");
             }
-
+        }
+        
+        public override async UniTask InitAsync()
+        {
+            await UniTask.CompletedTask;
         }
 
         public void Play(string path,Define.Sound type=Define.Sound.SFX, float pitch = 1.0f)

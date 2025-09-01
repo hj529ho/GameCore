@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+
 namespace Core.Manager
 {
     public partial class Managers
@@ -32,6 +34,37 @@ namespace Core.Manager
 
         private readonly Core.Manager.UIManager _uI = new();
         public static Core.Manager.UIManager UI => Instance._uI;
+
+
+        private static void InitCore()
+        {
+            Data.Init();
+            Event.Init();
+            Input.Init();
+            Scene.Init();
+            Localization.Init();
+            Pool.Init();
+            Resource.Init();
+            Sound.Init();
+            Story.Init();
+            UI.Init();
+        }
+
+        private static async UniTask InitAsyncCore()
+        {
+            await UniTask.WhenAll(
+                Data.InitAsync(),
+                Event.InitAsync(),
+                Input.InitAsync(),
+                Scene.InitAsync(),
+                Localization.InitAsync(),
+                Pool.InitAsync(),
+                Resource.InitAsync(),
+                Sound.InitAsync(),
+                Story.InitAsync(),
+                UI.InitAsync()
+            );
+        }
 
         #endregion
     }

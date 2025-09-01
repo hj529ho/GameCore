@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Core.Manager
@@ -10,9 +11,19 @@ namespace Core.Manager
     /// 추후 성능 및 고급 기능 필요시 MessagePipe로 마이그레이션
     /// </summary>
     // [Manager("Event", "Core")]
-    public class EventManager
+    public class EventManager : BaseManager
     {
         private readonly Dictionary<Type, EventHandler> _handlers = new ();
+        
+        public override void Init()
+        {
+            
+        }
+
+        public override async UniTask InitAsync()
+        {
+            await UniTask.CompletedTask;
+        }
 
         private EventHandler<T> GetHandler<T>() where T : class
         {
@@ -118,5 +129,8 @@ namespace Core.Manager
                 }
             }
         }
+
+   
+
     }
 }

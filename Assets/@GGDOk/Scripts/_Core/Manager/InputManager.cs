@@ -1,29 +1,25 @@
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Core.Manager
 {
     // [Manager("Input","Core")]
-    public class InputManager
+    public class InputManager : BaseManager
     {
         private BaseInputController _controller;
-        public BaseInputController Controller
-        {
-            get
-            {
-                if (OverrideController != null)
-                {
-                    return OverrideController;
-                }
-                return _controller;
-            }
-        }
-        public BaseInputController OverrideController;
+        public BaseInputController Controller => _controller;
         private Coroutine _inputDetectCoroutine;
-        public void Init()
+        public override void Init()
         {
             _inputDetectCoroutine = CoroutineHelper.StartCoroutine(DetectInputDevice());
         }
+
+        public override async UniTask InitAsync()
+        {
+            await UniTask.CompletedTask;
+        }
+
         public Vector3 GetMoveDirection()
         {
             return Controller?.GetMoveDirection()??Vector3.zero; 

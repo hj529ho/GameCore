@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -63,10 +64,17 @@ namespace Core.Manager
     }
 
     // [Manager("Pool","Core")]
-    public class PoolManager
+    public class PoolManager : BaseManager
     {
         private Dictionary<string, Pool> _pools = new Dictionary<string, Pool>();
-
+        public override void Init()
+        {
+            
+        }
+        public override async UniTask InitAsync()
+        {
+            await UniTask.CompletedTask;
+        }
         public GameObject Pop(GameObject prefab)
         {
             if (_pools.ContainsKey(prefab.name) == false)
@@ -93,5 +101,7 @@ namespace Core.Manager
         {
             _pools.Clear();
         }
+
+
     }
 }
