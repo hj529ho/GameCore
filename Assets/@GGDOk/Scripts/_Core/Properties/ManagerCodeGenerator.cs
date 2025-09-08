@@ -65,26 +65,21 @@ public class ManagerCodeGenerator
             })
             .GroupBy(x => x.Attr.Region)
             .OrderBy(g => g.Key);
-
         foreach (var group in groupedManagers)
         {
             sb.AppendLine($"        #region {group.Key}");
-            
             foreach (var manager in group)
             {
                 string propertyName = manager.Name;
                 string typeName = manager.Type.FullName;
                 string fieldName = $"_{char.ToLowerInvariant(propertyName[0])}{propertyName.Substring(1)}";
-                
                 sb.AppendLine($"        private readonly {typeName} {fieldName} = new();");
                 sb.AppendLine($"        public static {typeName} {propertyName} => Instance.{fieldName};");
                 sb.AppendLine();
             }
-            
             sb.AppendLine("        #endregion");
             sb.AppendLine();
         }
-
         sb.AppendLine("        private static async UniTask InitAsyncContents()");
         sb.AppendLine("        {");
         foreach (var group in groupedManagers)
@@ -107,7 +102,6 @@ public class ManagerCodeGenerator
             }
         }
         sb.AppendLine("        }");
-
         sb.AppendLine("    }");
         sb.AppendLine("}");
 

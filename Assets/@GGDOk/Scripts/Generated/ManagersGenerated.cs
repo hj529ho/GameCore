@@ -7,14 +7,18 @@ namespace Core.Manager
     public partial class Managers
     {
         #region Content
-        
+        private readonly GGDOk.Scripts.Content.Manager.GameManager _game = new();
+        public static GGDOk.Scripts.Content.Manager.GameManager Game => Instance._game;
+
         #endregion
 
         private static async UniTask InitAsyncContents()
         {
+            await Game.InitAsync();
         }
         private static void InitContents()
         {
+            Game.Init();
         }
     }
 }
