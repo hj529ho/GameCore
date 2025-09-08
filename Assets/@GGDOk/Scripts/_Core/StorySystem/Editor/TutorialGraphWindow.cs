@@ -84,11 +84,9 @@ public class VNGraphView : GraphView
 {
     private readonly EditorWindow _window;
     private readonly MiniMap _miniMap;
-    private float cellWidth = 120;
-    private float cellHeight = 120;
-
+    private const float CellWidth = 120;
+    private const float CellHeight = 120;
     private StartNode _startNode;
-    
     public VNGraphView(EditorWindow window)
     {
         _window = window;
@@ -101,7 +99,7 @@ public class VNGraphView : GraphView
         // (2) 점선 배경만 깔기
         var dotted = new DottedGridBackground(this)
         {
-            majorSpacing = cellHeight,
+            majorSpacing = CellHeight,
             dotLength    = 3f,
             gap          = 5f,
             thickness    = 1.5f,
@@ -127,16 +125,16 @@ public class VNGraphView : GraphView
         var s = FindStart();
         if (s == null) return (0, 0); // 없으면 (0,0)을 기준
         var r = s.GetPosition();
-        int scol = Mathf.RoundToInt(r.x / cellWidth);
-        int srow = Mathf.RoundToInt(r.y / cellHeight) +1;
+        int scol = Mathf.RoundToInt(r.x / CellWidth);
+        int srow = Mathf.RoundToInt(r.y / CellHeight) +1;
         return (scol, srow);
     }
     void SnapNodeToGrid(Node n)
     {
         // 1) 현재 위치 → 그리드 좌표
         var pos = n.GetPosition();
-        int col = Mathf.RoundToInt(pos.x / cellWidth);
-        int row = Mathf.RoundToInt(pos.y / cellHeight);
+        int col = Mathf.RoundToInt(pos.x / CellWidth);
+        int row = Mathf.RoundToInt(pos.y / CellHeight);
 
         // 2) Start 기준 좌표
         var (scol, srow) = GetStartGrid();
@@ -147,9 +145,9 @@ public class VNGraphView : GraphView
             row = Mathf.Max(row, srow);
         }
         // 4) 위치 스냅 + 크기 고정(120x120)
-        n.SetPosition(new Rect(col * cellWidth, row * cellHeight, 0, 0));
-        n.style.width  = cellWidth;
-        n.style.height = cellHeight;
+        n.SetPosition(new Rect(col * CellWidth, row * CellHeight, 0, 0));
+        n.style.width  = CellWidth;
+        n.style.height = CellHeight;
         if (n is IGridNode gn)
             gn.Coord = new GridCoord { col = col, row = row };
     }
