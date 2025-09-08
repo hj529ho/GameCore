@@ -23,7 +23,6 @@ public class TutorialGraphWindow : EditorWindow
         ConstructGraphView();
         GenerateToolBar();
      }
-
      private void OnDisable()
      {
          rootVisualElement.Remove(_graphView);
@@ -154,8 +153,6 @@ public class VNGraphView : GraphView
         if (n is IGridNode gn)
             gn.Coord = new GridCoord { col = col, row = row };
     }
-    
-
     private GraphViewChange OnGraphViewChanged(GraphViewChange change)
     {
         if (change.movedElements != null)
