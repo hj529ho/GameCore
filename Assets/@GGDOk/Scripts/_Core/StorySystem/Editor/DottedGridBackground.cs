@@ -8,7 +8,8 @@ public class DottedGridBackground : VisualElement
     private readonly GraphView _graphView;
 
     // 스타일 파라미터
-    public float majorSpacing = 120f;
+    public float majorSpacingW = 300;
+    public float majorSpacingH = 120;
     public float dotLength    = 2f;
     public float gap          = 6f;
     public float thickness    = 1f;
@@ -38,8 +39,8 @@ public class DottedGridBackground : VisualElement
         Vector3 pan = t.position;   // 화면 좌표계에서의 평행이동 (px)
 
         // 1) 화면상 그리드 간격 = 콘텐츠 간격 * 스케일
-        float stepX = Mathf.Max(1f, majorSpacing * sx);
-        float stepY = Mathf.Max(1f, majorSpacing * sy);
+        float stepX = Mathf.Max(1f, majorSpacingW * sx);
+        float stepY = Mathf.Max(1f, majorSpacingH * sy);
 
         // 2) 화면상 오프셋 = pan 그대로 (※ scale 곱하지 말 것)
         float offX = Mathf.Repeat(pan.x, stepX);

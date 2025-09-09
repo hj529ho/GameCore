@@ -5,12 +5,12 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-public class TutorialGraphWindow : EditorWindow
+public class VNGraphWindow : EditorWindow
 {
      [MenuItem("Tools/Story Graph Editor")]
      public static void Open()
      {
-         var window = GetWindow<TutorialGraphWindow>();
+         var window = GetWindow<VNGraphWindow>();
          window.titleContent = new GUIContent("Tutorial Graph Editor");
          window.minSize = new Vector2(800,500);
      }
@@ -53,27 +53,16 @@ public class TutorialGraphWindow : EditorWindow
         if(!string.IsNullOrEmpty(path))
         {
             path = FileUtil.GetProjectRelativePath(path);
-            // _asset = AssetDatabase.LoadAssetAtPath<TutorialGraphAsset>(path);
-            // _graphView.LoadFromAsset(_asset);
+
         }
     }
     void OnClickNewButton()
     {
-        // _asset = null;
-        // _graphView.ClearGraph();
-        // _graphView.CreateStartNode(new Vector2(100, 200));
+
     }
     void OnClickSaveButton()
     {
-        // if (_asset == null)
-        // {
-        //     var path = EditorUtility.SaveFilePanelInProject("Save Tutorial Graph", "NewTutorialGraph", "asset", "");
-        //     if (string.IsNullOrEmpty(path)) return;
-        //     _asset = ScriptableObject.CreateInstance<TutorialGraphAsset>();
-        //     AssetDatabase.CreateAsset(_asset, path);
-        // }
-        // _graphView.SaveToAsset(_asset);
-        // EditorUtility.SetDirty(_asset);
+
         AssetDatabase.SaveAssets();
     }
 }
@@ -84,7 +73,7 @@ public class VNGraphView : GraphView
 {
     private readonly EditorWindow _window;
     private readonly MiniMap _miniMap;
-    private const float CellWidth = 120;
+    private const float CellWidth = 300;
     private const float CellHeight = 120;
     private StartNode _startNode;
     public VNGraphView(EditorWindow window)
@@ -99,7 +88,8 @@ public class VNGraphView : GraphView
         // (2) 점선 배경만 깔기
         var dotted = new DottedGridBackground(this)
         {
-            majorSpacing = CellHeight,
+            majorSpacingW = CellWidth,
+            majorSpacingH = CellHeight,
             dotLength    = 3f,
             gap          = 5f,
             thickness    = 1.5f,
@@ -107,12 +97,10 @@ public class VNGraphView : GraphView
         };
         Insert(0, dotted);
         dotted.StretchToParentSize();
-        // (3) 줌/패닝 시 리페인트
         this.viewTransformChanged += _ => dotted.MarkDirtyRepaint();
-        // (폴백) 특정 버전에서 필요할 수 있음
         this.schedule.Execute(() => dotted.MarkDirtyRepaint()).Every(16);
-        _startNode = CreateNode<StartNode>(new Vector2(120,120));
-        CreateNode<EndNode>(new Vector2(120,240));
+        _startNode = CreateNode<StartNode>(new Vector2(300,300));
+        CreateNode<SayNode>(new Vector2(600,300));
     }
     StartNode FindStart()
     {
@@ -165,12 +153,10 @@ public class VNGraphView : GraphView
         }
         return change;
     }
-    public T CreateNode<T>(Vector2 position) where T : Node, new()
+    private T CreateNode<T>(Vector2 position) where T : VNNode, new()
     {
         var node = new T();
-        node.style.width = 120;
-        node.style.height = 120;
-        node.SetPosition(new UnityEngine.Rect(position.x,position.y, 120, 120));
+        node.SetPosition(new UnityEngine.Rect(position.x,position.y, CellWidth, CellHeight));
         AddElement(node);
         return node;
     }
