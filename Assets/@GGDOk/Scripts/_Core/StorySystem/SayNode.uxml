@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/@GGDOk/Scripts/_Core/StorySystem/aa.uss?fileID=7433441132597879392&amp;guid=784afdc42400b4c4f8f4eb916c01142c&amp;type=3#aa" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-self: flex-start; visibility: visible; overflow: visible; opacity: 1; width: 100%; height: 100%; flex-direction: row; -unity-text-outline-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.57);">
+        <ui:Label text="Say" style="-unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 5px; padding-bottom: 0; padding-left: 5px; color: rgb(255, 255, 255); font-size: 17px; height: 100%; width: 40px; min-width: 40px; max-width: 40px; background-color: rgb(0, 47, 87);" />
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+            <ui:VisualElement name="VisualElement" class="dialog-field" style="flex-grow: 1; background-size: 100% 100%; flex-direction: row; width: 100%; height: 50px; min-height: 50px; max-height: 50px;">
+                <ui:TextField label="캐릭터&#10;" placeholder-text="filler text" name="Speaker" class="dialog-field" style="color: rgb(255, 255, 255); -unity-text-outline-color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-size: 100% 95px; height: auto; min-height: auto; max-height: none;">
+                <ui:TextField label="대사" placeholder-text="filler text" name="TextField" enabled="true" hide-placeholder-on-focus="false" readonly="false" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; align-self: flex-start; flex-direction: column; visibility: visible; opacity: 1; color: rgb(255, 255, 255); -unity-text-align: upper-center; white-space: nowrap; text-overflow: ellipsis; background-color: rgba(255, 255, 255, 0); height: 194px; width: 100%; background-size: 100px 100%; font-size: 10px; flex-basis: 95px; flex-wrap: nowrap; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; position: absolute; justify-content: flex-end; top: 0; align-items: stretch; min-height: 0; align-content: flex-start; flex-shrink: 0; flex-grow: 0; right: 0; background-repeat: no-repeat repeat; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

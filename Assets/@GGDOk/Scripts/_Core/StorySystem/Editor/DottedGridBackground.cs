@@ -8,8 +8,8 @@ public class DottedGridBackground : VisualElement
     private readonly GraphView _graphView;
 
     // 스타일 파라미터
-    public float majorSpacingW = 300;
-    public float majorSpacingH = 120;
+    public float majorSpacingW = 340;
+    public float majorSpacingH = 240;
     public float dotLength    = 2f;
     public float gap          = 6f;
     public float thickness    = 1f;

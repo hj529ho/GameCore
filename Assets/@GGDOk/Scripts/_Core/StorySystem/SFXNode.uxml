@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/@GGDOk/Scripts/_Core/StorySystem/aa.uss?fileID=7433441132597879392&amp;guid=784afdc42400b4c4f8f4eb916c01142c&amp;type=3#aa" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-self: flex-start; visibility: visible; overflow: visible; opacity: 1; width: 100%; height: 100%; flex-direction: row; -unity-text-outline-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.57);">
+        <ui:Label text="SFX" style="-unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 5px; padding-bottom: 0; padding-left: 5px; color: rgb(255, 255, 255); font-size: 17px; height: 100%; width: 40px; min-width: 40px; max-width: 40px; background-color: rgb(87, 0, 74);" />
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+            <ui:VisualElement name="VisualElement" class="dialog-field" style="flex-grow: 1; background-size: 100% 100%; flex-direction: row; width: 100%; height: 50px; min-height: 50px; max-height: 50px;">
+                <ui:TextField label="SFXPath" placeholder-text="filler text" name="SFXPath" class="dialog-field" style="color: rgb(255, 255, 255); -unity-text-outline-color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-size: 100% 95px; height: auto; min-height: auto; max-height: none;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

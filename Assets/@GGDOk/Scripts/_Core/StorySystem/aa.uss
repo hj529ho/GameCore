@@ -1,0 +1,63 @@
+.unity-text-field.dialog-field {
+    height: 50px;
+    width: 100%;
+    margin: 0;
+    background-color: rgba(255, 0, 0, 0.1);
+    min-height: 50px;
+    max-height: 50px;
+}
+
+.dialog-field .unity-base-field__label {
+    margin: 0;
+    width: 30px;
+    min-width: 0;
+    flex: 0 1 auto;
+}
+
+.dialog-field .unity-base-text-field__label {
+    margin: 0;
+    width: 70px;
+    min-width: 0;
+    align-self: center;
+    flex: 0 1 auto;
+    color: white;
+}
+
+.dialog-field .unity-text-field__input {
+    white-space: normal;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    margin: 0;
+    letter-spacing: 0;
+    width: 200px;
+    height: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    background-size: 100% 100%;
+    -unity-text-align: middle-left;
+    text-overflow: clip;
+    -unity-text-outline-width: 0;
+}
+
+.dialog-field .unity-base-text-field__text-input {
+    white-space: normal;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    margin: 0;
+    letter-spacing: 0;
+    width: 200px;
+    height: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    -unity-text-align: middle-left;
+    text-overflow: clip;
+    -unity-text-outline-width: 0;
+}
+#unity-text-input {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.dialog-field .unity-text-element__placeholder {
+    margin : 0;
+}

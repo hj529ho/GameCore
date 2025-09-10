@@ -11,7 +11,7 @@ public class VNGraphWindow : EditorWindow
      public static void Open()
      {
          var window = GetWindow<VNGraphWindow>();
-         window.titleContent = new GUIContent("Tutorial Graph Editor");
+         window.titleContent = new GUIContent("Scenario Graph Editor");
          window.minSize = new Vector2(800,500);
      }
      // private TutorialGraphAsset _graphAsset;
@@ -74,7 +74,7 @@ public class VNGraphView : GraphView
     private readonly EditorWindow _window;
     private readonly MiniMap _miniMap;
     private const float CellWidth = 300;
-    private const float CellHeight = 120;
+    private const float CellHeight = 240;
     private StartNode _startNode;
     public VNGraphView(EditorWindow window)
     {
@@ -99,8 +99,21 @@ public class VNGraphView : GraphView
         dotted.StretchToParentSize();
         this.viewTransformChanged += _ => dotted.MarkDirtyRepaint();
         this.schedule.Execute(() => dotted.MarkDirtyRepaint()).Every(16);
-        _startNode = CreateNode<StartNode>(new Vector2(300,300));
-        CreateNode<SayNode>(new Vector2(600,300));
+        _startNode = CreateNode<StartNode>(new Vector2(340,240));
+        CreateNode<SayNode>(new Vector2(340,480));
+        CreateNode<SayNode>(new Vector2(340,480));
+        CreateNode<SayNode>(new Vector2(340,480));
+        CreateNode<SayNode>(new Vector2(340,480));
+        CreateNode<SayNode>(new Vector2(340,480));
+        CreateNode<SayNode>(new Vector2(340,480));
+        CreateNode<ClickNode>(new Vector2(340,480));
+        CreateNode<ClickNode>(new Vector2(340,480));
+        CreateNode<ClickNode>(new Vector2(340,480));
+        CreateNode<SFXNode>(new Vector2(340,480));
+        CreateNode<SFXNode>(new Vector2(340,480));
+        CreateNode<SFXNode>(new Vector2(340,480));
+        CreateNode<SFXNode>(new Vector2(340,480));
+        CreateNode<SFXNode>(new Vector2(340,480));
     }
     StartNode FindStart()
     {
@@ -132,7 +145,7 @@ public class VNGraphView : GraphView
             col = Mathf.Max(col, scol);
             row = Mathf.Max(row, srow);
         }
-        // 4) 위치 스냅 + 크기 고정(120x120)
+        // 4) 위치 스냅 + 크기 고정(300x240)
         n.SetPosition(new Rect(col * CellWidth, row * CellHeight, 0, 0));
         n.style.width  = CellWidth;
         n.style.height = CellHeight;

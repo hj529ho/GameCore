@@ -1,0 +1,39 @@
+.dialog-field
+{
+    margin: 0;
+    
+}
+
+
+/* 1) TextField 루트(같은 요소에 붙은 클래스이므로 공백 없이) */
+.unity-text-field.dialog-field {
+
+    height: 25px;
+    width: 100%;
+    background-color: rgba(255,0,0,0.1);
+}
+
+/* 2) 라벨 (버전별 클래스명 호환) */
+.dialog-field .unity-base-field__label,
+.dialog-field .unity-base-text-field__label {
+    margin: 0;
+    width: 100px;
+    min-width: 0;      /* ← 라벨 폭이 안 줄면 이게 빠져서임 */
+    flex: 0 1 auto;    /* shrink 허용 */
+}
+
+/* 3) 인풋 텍스트 영역 (버전별 호환) */
+.dialog-field .unity-text-field__input,
+.dialog-field .unity-base-text-field__text-input {
+    margin: 0;
+    white-space: normal;   /* 줄바꿈 허용 */
+    color: rgb(0,219,255);
+    font-size: 10px;
+    min-width: 0;          /* 줄어들 수 있게 */
+}
+
+/* 4) placeholder 색 (가능한 버전에서) */
+.dialog-field .unity-text-element__placeholder {
+
+    opacity: 0.6;
+}
